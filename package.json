@@ -6,7 +6,8 @@
 		"test": "jest"
 	},
 	"devDependencies": {
-		"jest": "^23.6.0"
+		"jest": "^23.6.0",
+		"jest-config": "^23.6.0"
 	},
 	"description": "a wrapper that make callback to promise",
 	"repository": "https://github.com/will32/callback-to-promise",

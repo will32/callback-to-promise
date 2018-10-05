@@ -36,4 +36,12 @@ describe('Callback to promise', () => {
     await promise(param);
     expect(checker).toHaveBeenCalledWith(param);
   });
+  it('should throw error if no parameter is given to the caller', async () => {
+    const promise = wrapper(() => {});
+    const resolver = jest.fn();
+    const catcher = jest.fn();
+
+    await promise().then(resolver).catch(catcher);
+    expect(catcher).toHaveBeenCalledTimes(1);
+  });
 });
