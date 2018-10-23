@@ -1,17 +1,28 @@
 {
-	"name": "callback-to-promise",
-	"version": "0.0.1",
-	"main": "./index.js",
-	"scripts": {
-		"test": "jest"
-	},
-	"devDependencies": {
-		"jest": "^23.6.0",
-		"jest-config": "^23.6.0"
-	},
-	"description": "a wrapper that make callback to promise",
-	"repository": "https://github.com/will32/callback-to-promise",
-	"author": "William Lin",
-	"license": "MIT",
-	"private": false
+  "name": "callback-to-promise",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "jest-config": "^23.6.0"
+  },
+  "description": "a wrapper that make callback to promise",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/will32/callback-to-promise.git"
+  },
+  "author": "William Lin",
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/will32/callback-to-promise/issues"
+  },
+  "homepage": "https://github.com/will32/callback-to-promise#readme",
+  "keywords": [
+    "callback",
+    "promise"
+  ]
 }
