@@ -1,5 +1,5 @@
 {
-  "name": "callback-to-promise",
+  "name": "simple-callback-promisify",
   "version": "0.0.1",
   "main": "./index.js",
   "scripts": {
