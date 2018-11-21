@@ -8,7 +8,6 @@ describe('Callback to promise', () => {
   });
   it('should be able to reject when errors', async () => {
     const error = new Error('test');
-    // const error = 'test';
     const fn = (param, callback) => callback(error);
     const catcher = jest.fn();
     const promise = wrapper(fn);
@@ -36,12 +35,22 @@ describe('Callback to promise', () => {
     await promise(param);
     expect(checker).toHaveBeenCalledWith(param);
   });
-  it('should throw error if no parameter is given to the caller', async () => {
-    const promise = wrapper(() => {});
+  it('should be able to resolve without extra params', async () => {
+    const callbackData = { something: 'test' };
+    const fn = (callback) => {
+      callback(undefined, callbackData);
+    };
     const resolver = jest.fn();
+    const promise = wrapper(fn);
+    await promise().then(resolver);
+    expect(resolver).toHaveBeenCalledWith(callbackData);
+  });
+  it('should be able to reject without extra params when error', async () => {
+    const error = new Error('test');
+    const fn = (callback) => callback(error);
     const catcher = jest.fn();
-
-    await promise().then(resolver).catch(catcher);
-    expect(catcher).toHaveBeenCalledTimes(1);
+    const promise = wrapper(fn);
+    await promise().catch(catcher);
+    expect(catcher).toHaveBeenCalledWith(error);
   });
 });
