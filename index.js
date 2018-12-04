@@ -1,15 +1,22 @@
-const wrapper = (fn, options) => {
+const wrapper = (fn, options = {}) => {
   return (...params) => new Promise((resolve, reject) => {
-    fn(
-      ...[
-        ...params,
-        (err, data) => {
-          err
-            ? reject(err)
-            : resolve(data);
-        }
-      ]
-    )
+    options.complex
+      ? fn(
+        ...[
+          ...params,
+          (...callbackParams) => resolve(callbackParams)
+        ]
+      )
+      : fn(
+        ...[
+          ...params,
+          (err, data) => {
+            err
+              ? reject(err)
+              : resolve(data);
+          }
+        ]
+      )
   })
 }
 

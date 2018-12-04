@@ -53,4 +53,18 @@ describe('Callback to promise', () => {
     await promise().catch(catcher);
     expect(catcher).toHaveBeenCalledWith(error);
   });
+  it('should be able to resolve with all param regardless if option has complex to true', async () => {
+    const error = new Error('test');
+    const a = { a: 1 };
+    const b = { test: 'something' };
+    const fn = (callback) => {
+      var t = 1;
+      callback(error, a, b);
+      t = 1;
+    };
+    const promise = wrapper(fn, { complex: true });
+    const resolver = jest.fn();
+    await promise().then(resolver);
+    expect(resolver).toHaveBeenCalledWith([error, a, b]);
+  })
 });
