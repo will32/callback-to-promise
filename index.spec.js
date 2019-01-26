@@ -2,7 +2,7 @@ const wrapper = require('./index');
 
 describe('Callback to promise', () => {
   it('should be able to transfer callback caller to a promise', () => {
-    const fn = (data, callback) => { };
+    const fn = () => { };
     const promise = wrapper(fn);
     expect(promise('test').then).toBeDefined();
   });
@@ -47,7 +47,7 @@ describe('Callback to promise', () => {
   });
   it('should be able to reject without extra params when error', async () => {
     const error = new Error('test');
-    const fn = (callback) => callback(error);
+    const fn = callback => callback(error);
     const catcher = jest.fn();
     const promise = wrapper(fn);
     await promise().catch(catcher);
@@ -58,13 +58,11 @@ describe('Callback to promise', () => {
     const a = { a: 1 };
     const b = { test: 'something' };
     const fn = (callback) => {
-      var t = 1;
       callback(error, a, b);
-      t = 1;
     };
     const promise = wrapper(fn, { complex: true });
     const resolver = jest.fn();
     await promise().then(resolver);
     expect(resolver).toHaveBeenCalledWith([error, a, b]);
-  })
+  });
 });
